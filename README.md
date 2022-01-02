@@ -1,7 +1,6 @@
 # Bank_app
 
-Demo Bank app
-|----------------|
+this is a demo of what can be done with flutter.
 
 ## design:
 - [Banking Mobile App](https://dribbble.com/shots/14891203-Banking-Mobile-App)
