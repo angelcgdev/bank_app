@@ -1,6 +1,6 @@
 # Bank_app
 
-|Demo Bank app|
+Demo Bank app
 |----------------|
 
 ## design:
