@@ -204,7 +204,7 @@ class _InfoUserOnBackgroundState extends State<InfoUserOnBackground> {
                                         ],
                                       ),
                                       const SizedBox(height: defaultPadding*1.5),
-                                      const Icon(Icons.more_horiz)
+                                      Icon(Icons.more_horiz, color: _theme.colorScheme.primary,)
                                     ],
                                   ),
                                 ),

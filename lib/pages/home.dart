@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:bank_app/data/cards.dart';
 import 'package:bank_app/helpers/no_glow.dart';
 import 'package:bank_app/pages/add_card.dart';
+import 'package:bank_app/provider/card_selected.dart';
 import 'package:bank_app/style/consts.dart';
 import 'package:bank_app/widgets/background.dart';
 import 'package:bank_app/widgets/bank_card.dart';
@@ -12,6 +13,7 @@ import 'package:bank_app/widgets/indicator.dart';
 import 'package:bank_app/widgets/info_user_on_bacground.dart';
 import 'package:bank_app/widgets/transactions.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 // import 'package:flutter/scheduler.dart';
 
 class HomePage extends StatefulWidget {
@@ -136,6 +138,7 @@ class _HomePageState extends State<HomePage>  with SingleTickerProviderStateMixi
 
 
   void _pageListener (){
+    Provider.of<CardSelected>(context, listen: false).changePage(_pageController.page!);
     setState(() {
       _page = _pageController.page!;
       _pageClamp = _page.clamp(0, 1);
@@ -157,9 +160,6 @@ class _HomePageState extends State<HomePage>  with SingleTickerProviderStateMixi
     return (n- min) / (max - min);
   }
 
-  double _inverValur(double val){
-    return 1.0-val;
-  }
 
   @override
   Widget build(BuildContext context) {

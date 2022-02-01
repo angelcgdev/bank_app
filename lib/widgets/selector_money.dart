@@ -11,59 +11,66 @@ class SelectorMoney extends StatelessWidget {
 
   final _initialPositionEur = 25.0;
 
-  final _moneyNotifier = ValueNotifier(true);
-
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: _changeMoney,
-      child: SizedBox(
-        height: _sizeMoney,
-        width: _sizeMoney * 2,
-        child: AnimatedSwitcher(
-          duration: const Duration(milliseconds: 300),
-          // child:
-          layoutBuilder: (_, __) {
-            return Stack(
-              fit: StackFit.expand,
-              alignment: AlignmentDirectional.center,
-              children: [
-                ValueListenableBuilder<bool>(
-                  valueListenable: _moneyNotifier,
-                  builder: (context, value, _) {
-                    return Positioned(
-                      right: _initialPositionEur,
-                      child: Container(
-                        height: _sizeMoney,
-                        width: _sizeMoney,
-                        decoration: BoxDecoration(
-                            borderRadius:
-                                BorderRadius.circular(_sizeMoney * .5),
-                            color: value?Colors.white:Colors.yellowAccent),
-                      ),
-                    );
-                  },
-                ),
-                Positioned(
-                  left: _initialPositionEur,
-                  child: Container(
-                    height: _sizeMoney,
-                    width: _sizeMoney,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(_sizeMoney * .5),
-                        color: Colors.red),
-                  ),
-                ),
-              ],
-            );
-          },
-        ),
+    final _theme = Theme.of(context);
+    return SizedBox(
+      height: _sizeMoney,
+      width: _sizeMoney * 2,
+      child: AnimatedSwitcher(
+        duration: const Duration(milliseconds: 300),
+        // child:
+        layoutBuilder: (_, __) {
+          return Stack(
+            fit: StackFit.expand,
+            alignment: AlignmentDirectional.center,
+            children: [
+              Positioned(
+                right: _initialPositionEur,
+                child: _MoneyIndicator(sizeMoney: _sizeMoney, simbol: '\$', transparence: 0.2),
+              ),
+              Positioned(
+                left: _initialPositionEur,
+                child: _MoneyIndicator(sizeMoney: _sizeMoney, simbol: '€', transparence: 1.0,),
+              ),
+            ],
+          );
+        },
       ),
     );
   }
+}
 
-  void _changeMoney() {
-    debugPrint('HOLAAAAAAAAA=========>');
-    _moneyNotifier.value = !_moneyNotifier.value;
+class _MoneyIndicator extends StatelessWidget {
+  const _MoneyIndicator({
+    Key? key,
+    required this.sizeMoney,
+    required this.simbol,
+    required this.transparence
+  }) : super(key: key);
+
+  final double sizeMoney;
+  final String simbol;
+  final double transparence;
+
+  @override
+  Widget build(BuildContext context) {
+    final _theme = Theme.of(context);
+    return Container(
+      height: sizeMoney,
+      width: sizeMoney,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(sizeMoney * .5),
+          color: _theme.primaryColor,
+        ),
+        child: Container(
+          height: sizeMoney,
+          width: sizeMoney,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(sizeMoney * .5),
+              color: Colors.white.withOpacity(transparence)),
+          child: Center(child: Text(simbol, style: TextStyle(color: _theme.colorScheme.primary, fontWeight: FontWeight.bold),)),
+        ),
+    );
   }
 }

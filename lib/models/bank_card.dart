@@ -1,5 +1,7 @@
 
 
+import 'package:bank_app/models/transaction.dart';
+
 class BankCardModel {
   final String name;
   final String logo;
@@ -8,6 +10,7 @@ class BankCardModel {
   final double amount;
   final int primaryColor;
   final int primaryVariant;
+  final List<Transaction> transactions;
 
   BankCardModel({
     required this.name,
@@ -16,6 +19,7 @@ class BankCardModel {
     required this.nroCard,
     required this.amount,
     required this.primaryColor,
-    required this.primaryVariant
+    required this.primaryVariant,
+    required this.transactions,
   });
 }
