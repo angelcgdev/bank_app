@@ -13,7 +13,6 @@ class SelectorMoney extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _theme = Theme.of(context);
     return SizedBox(
       height: _sizeMoney,
       width: _sizeMoney * 2,

@@ -1,6 +1,7 @@
 import 'package:bank_app/data/frinds.dart';
 import 'package:bank_app/style/consts.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class Friends extends StatelessWidget {
   const Friends({Key? key}) : super(key: key);
@@ -27,13 +28,15 @@ class Friends extends StatelessWidget {
                       Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          SizedBox(
+                          Container(
                             height: sizeCircleAvatar,
                             width: sizeCircleAvatar,
-                            child: CircleAvatar(
-                              backgroundColor: Colors.white,
-                              child: Icon(Icons.search, size: sizeCircleAvatar*.6, color: _theme.colorScheme.primary,),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(sizeCircleAvatar*.5),
+                              color: Colors.white
                             ),
+                            padding: const EdgeInsets.all(19),
+                            child: SvgPicture.asset('assets/icons/search.svg', color: _theme.colorScheme.primary),
                           ),
                           Text('Search', style: _theme.textTheme.headline4?.copyWith(color: _theme.colorScheme.primary))
                         ],
